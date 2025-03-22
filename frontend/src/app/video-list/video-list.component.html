@@ -1,0 +1,35 @@
+<div class="video-list-container">
+    <h2>Liste des Vidéos</h2>
+
+    <!-- Indicateur de chargement -->
+    <div *ngIf="isLoading">
+        Chargement des vidéos...
+    </div>
+
+    <!-- Message d'erreur -->
+    <div *ngIf="errorMessage">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Liste des vidéos -->
+    <div class="video-scroll-container">
+        <!-- Boucle sur les vidéos -->
+        <div *ngFor="let video of videos" class="video-item">
+            <!-- Miniature ou image de prévisualisation -->
+            <div class="video-thumbnail">
+                <img [src]="video.video_url" alt="Miniature de la vidéo">
+            </div>
+
+            <!-- Nom de la vidéo -->
+            <div class="video-info">
+                <h3>{{ video.video_name }}</h3>
+            </div>
+
+            <!-- Boutons d'actions -->
+            <div class="video-actions">
+                <button (click)="editVideo(video)">Modifier</button>
+                <button (click)="deleteVideo(video)">Supprimer</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -19,13 +19,13 @@ class VideoController extends Controller
         try {
             // Récupérer toutes les vidéos triées par order_position
             $videos = Video::orderBy('order_position', 'asc')->get();
-
+    
             // Formater les données pour le front-end
             $formattedVideos = $videos->map(function ($video) {
                 return [
                     'id' => $video->id,
                     'video_name' => $video->video_name,
-                    'video_url' => $video->video_url,
+                    'video_url' => asset('storage/videos/' . $video->video_url), // Utilisez asset() pour générer une URL absolue
                     'video_duration' => $video->video_duration,
                     'video_aspect_ratio' => $video->video_aspect_ratio,
                     'order_position' => $video->order_position,
@@ -33,7 +33,7 @@ class VideoController extends Controller
                     'updated_at' => $video->updated_at,
                 ];
             });
-
+    
             // Retourner les vidéos au format JSON
             return response()->json(['success' => true, 'videos' => $formattedVideos]);
         } catch (\Exception $e) {

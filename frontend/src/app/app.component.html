@@ -1,0 +1,28 @@
+ <!-- En-tête intégré directement dans le composant racine -->
+    <header class="header">
+        <h1>Gestion de Vidéos</h1>
+        <nav class="nav">
+            <a routerLink="accueil">Accueil</a>
+            <a routerLink="upload">Télécharger une vidéo</a>
+            <a routerLink="video-list">Liste des videos</a>
+            <a routerLink="about">À propos</a>
+        </nav>
+    </header>
+
+    <!-- Contenu principal -->
+    <main>
+        <router-outlet></router-outlet>
+    </main>
+
+    <!-- Pied de page -->
+    <footer class="footer">
+        <div class="footer-content">
+          <p>&copy; 2025 - Créé par MounirIA</p>
+            <nav class="footer-nav">
+                <a routerLink="accueil">Accueil</a>
+                <a routerLink="upload">Télécharger une vidéo</a>
+                <a routerLink="video-list">Liste des videos</a>
+                <a routerLink="about">À propos</a>
+            </nav>
+        </div>
+    </footer>

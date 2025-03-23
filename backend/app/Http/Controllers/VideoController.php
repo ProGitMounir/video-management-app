@@ -33,11 +33,9 @@ class VideoController extends Controller
                     'updated_at' => $video->updated_at,
                 ];
             });
-    
-            // Retourner les vidéos au format JSON
+            
             return response()->json(['success' => true, 'videos' => $formattedVideos]);
         } catch (\Exception $e) {
-            // En cas d'erreur, retourner un message d'erreur
             \Log::error('Erreur lors de la récupération des vidéos: ' . $e->getMessage());
             return response()->json(['error' => true, 'message' => 'Une erreur est survenue lors de la récupération des vidéos.'], 500);
         }
@@ -49,8 +47,8 @@ class VideoController extends Controller
             $validator = Validator::make($request->all(), [
                 'video' => 'required|file|mimetypes:video/mp4,video/quicktime|max:102400', // 100MB max
                 'video_name' => 'required|string|max:255',
-                'video_duration' => 'nullable|integer', // Ajouté pour saisie manuelle
-                'video_aspect_ratio' => 'nullable|string' // Ajouté pour saisie manuelle
+                'video_duration' => 'nullable|integer', 
+                'video_aspect_ratio' => 'nullable|string'
             ]);
 
             if ($validator->fails()) {
@@ -105,10 +103,7 @@ class VideoController extends Controller
 
             return response()->json(['error' => true, 'message' => 'Aucun fichier vidéo fourni.'], 422);
         } catch (\Exception $e) {
-            // Log l'erreur pour le débogage
             \Log::error('Erreur lors du téléchargement de la vidéo: ' . $e->getMessage());
-
-            // Rediriger avec un message d'erreur
             return response()->json(['error' => true, 'message' => 'Une erreur est survenue lors du téléchargement de la vidéo: ' . $e->getMessage()], 500);
         }
     }
@@ -153,10 +148,7 @@ class VideoController extends Controller
 
             return response()->json(['success' => true, 'message' => 'Nom de la vidéo mis à jour avec succès.']);
         } catch (\Exception $e) {
-            // Log l'erreur pour le débogage
             \Log::error('Erreur lors de la mise à jour de la vidéo: ' . $e->getMessage());
-
-            // Retourner un message d'erreur
             return response()->json(['error' => true, 'message' => 'Une erreur est survenue lors de la mise à jour de la vidéo.'], 500);
         }
     }
@@ -176,15 +168,11 @@ class VideoController extends Controller
             $videoPath = str_replace('/storage', 'public', $video->video_url);
             Storage::delete($videoPath);
 
-            // Supprimer l'enregistrement de la base de données
             $video->delete();
 
             return response()->json(['success' => true, 'message' => 'Vidéo supprimée avec succès.']);
         } catch (\Exception $e) {
-            // Log l'erreur pour le débogage
             \Log::error('Erreur lors de la suppression de la vidéo: ' . $e->getMessage());
-
-            // Retourner un message d'erreur
             return response()->json(['error' => true, 'message' => 'Une erreur est survenue lors de la suppression de la vidéo.'], 500);
         }
     }

@@ -25,7 +25,7 @@ class VideoController extends Controller
                 return [
                     'id' => $video->id,
                     'video_name' => $video->video_name,
-                    'video_url' => asset('storage/videos/' . $video->video_url), // Utilisez asset() pour générer une URL absolue
+                    'video_url' => asset('storage/videos/' . $video->video_url), // Générer l'URL complète
                     'video_duration' => $video->video_duration,
                     'video_aspect_ratio' => $video->video_aspect_ratio,
                     'order_position' => $video->order_position,
@@ -43,15 +43,12 @@ class VideoController extends Controller
         }
     }
 
-    // Télécharger une vidéo CREATE
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         try {
             // Validation des données
             $validator = Validator::make($request->all(), [
                 'video' => 'required|file|mimetypes:video/mp4,video/quicktime|max:102400', // 100MB max
                 'video_name' => 'required|string|max:255',
-                'order_position' => 'nullable|integer',
                 'video_duration' => 'nullable|integer', // Ajouté pour saisie manuelle
                 'video_aspect_ratio' => 'nullable|string' // Ajouté pour saisie manuelle
             ]);
@@ -88,15 +85,19 @@ class VideoController extends Controller
 
                 // Stocker le fichier
                 $videoPath = $video->store('videos', 'public');
-                $videoUrl = Storage::url($videoPath);
+                $videoName = basename($videoPath);
+
+                // Récupérer la dernière position dans la base de données
+                $lastVideo = Video::orderBy('order_position', 'desc')->first();
+                $orderPosition = $lastVideo ? $lastVideo->order_position + 1 : 1;
 
                 // Créer l'enregistrement dans la base de données
                 Video::create([
                     'video_name' => $request->video_name,
-                    'video_url' => $videoUrl,
+                    'video_url' => $videoName,
                     'video_duration' => $duration,
                     'video_aspect_ratio' => $aspectRatio,
-                    'order_position' => $request->order_position ?? 0
+                    'order_position' => $orderPosition
                 ]);
 
                 return response()->json(['success' => true, 'message' => 'Vidéo téléchargée avec succès.']);

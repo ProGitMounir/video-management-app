@@ -1,0 +1,49 @@
+<div class="upload-container">
+    <h2>Télécharger une vidéo</h2>
+
+    <!-- Message d'erreur -->
+    <div *ngIf="errorMessage" class="error-message">
+        ❌ {{ errorMessage }}
+    </div>
+
+    <!-- Message de succès -->
+    <div *ngIf="successMessage" class="success-message">
+        ✅ {{ successMessage }}
+    </div>
+
+    <!-- Formulaire de téléchargement -->
+    <form (ngSubmit)="onSubmit()">
+        <!-- Champ pour le nom de la vidéo -->
+        <div class="form-group">
+            <label for="videoName">Nom de la vidéo</label>
+            <input
+                type="text"
+                id="videoName"
+                [(ngModel)]="videoName"
+                name="videoName"
+                required
+                placeholder="Entrez le nom de la vidéo"
+            />
+        </div>
+
+        <!-- Champ pour sélectionner le fichier vidéo -->
+        <div class="form-group">
+            <label for="videoFile">Sélectionnez une vidéo</label>
+            <input
+                type="file"
+                id="videoFile"
+                (change)="onFileSelected($event)"
+                name="videoFile"
+                accept="video/mp4,video/quicktime"
+                required
+            />
+            <small>Formats acceptés : MP4, MOV. Taille maximale : 100 Mo.</small>
+        </div>
+
+        <!-- Bouton de soumission -->
+        <button type="submit" [disabled]="isLoading">
+            <span *ngIf="!isLoading">Télécharger</span>
+            <span *ngIf="isLoading">Téléchargement en cours...</span>
+        </button>
+    </form>
+</div>

@@ -1,0 +1,98 @@
+/* Conteneur principal */
+.upload-container {
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 8rem; /* Grand espace au-dessus du composant */
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre */
+.upload-container h2 {
+    text-align: center;
+    color: #007bff;
+    font-size: 2rem; /* Taille de police augmentée */
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem; /* Espacement sous le texte */
+    border-bottom: 2px solid #007bff; /* Bordure en bas pour le style */
+    display: inline-block; /* Pour que la bordure ne s'étende pas sur toute la largeur */
+    font-weight: 600; /* Texte en gras */
+}
+
+/* Groupes de formulaire */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-group input[type="file"] {
+    padding: 0.3rem;
+}
+
+.form-group small {
+    display: block;
+    margin-top: 0.5rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Bouton de soumission */
+button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+/* Messages d'erreur et de succès */
+.error-message {
+    color: red;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.5rem;
+    background-color: #ffe6e6;
+    border: 1px solid #ffcccc;
+    border-radius: 4px;
+}
+
+.success-message {
+    color: green;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-weight: bold;
+    padding: 0.5rem;
+    background-color: #e6ffe6;
+    border: 1px solid #ccffcc;
+    border-radius: 4px;
+}

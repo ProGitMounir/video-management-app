@@ -2,34 +2,58 @@
     <h2>Liste des Vidéos</h2>
 
     <!-- Indicateur de chargement -->
-    <div *ngIf="isLoading">
+    <div *ngIf="isLoading" class="loading">
         Chargement des vidéos...
     </div>
 
     <!-- Message d'erreur -->
-    <div *ngIf="errorMessage">
+    <div *ngIf="errorMessage" class="error">
         {{ errorMessage }}
     </div>
 
-    <!-- Liste des vidéos -->
-    <div class="video-scroll-container">
-        <!-- Boucle sur les vidéos -->
-        <div *ngFor="let video of videos" class="video-item">
-            <!-- Miniature ou image de prévisualisation -->
-            <div class="video-thumbnail">
-                <img [src]="video.video_url" alt="Miniature de la vidéo">
-            </div>
+    <!-- Conteneur des boutons de navigation et du défilement -->
+    <div class="video-scroll-controls">
+        <!-- Bouton Précédent -->
+        <button (click)="scrollLeft()">◀</button>
 
-            <!-- Nom de la vidéo -->
-            <div class="video-info">
-                <h3>{{ video.video_name }}</h3>
-            </div>
+        <!-- Conteneur défilable pour les vidéos -->
+        <div class="video-scroll-container">
+            <!-- Boucle sur les vidéos -->
+            <div *ngFor="let video of videos" class="video-item">
+                <!-- Contenu de chaque vidéo -->
+                <div class="video-wrapper">
+                    <!-- Miniature ou lecteur vidéo -->
+                    <div class="video-thumbnail" (click)="toggleVideoPlayback(videoPlayer)">
+                        <video #videoPlayer width="100%" height="auto" muted>
+                            <source [src]="video.video_url" type="video/mp4">
+                            Votre navigateur ne supporte pas la lecture de vidéos.
+                        </video>
+                        <div class="play-pause-icon" *ngIf="!videoPlayer.paused">⏸</div>
+                        <div class="play-pause-icon" *ngIf="videoPlayer.paused">▶️</div>
+                    </div>
 
-            <!-- Boutons d'actions -->
-            <div class="video-actions">
-                <button (click)="editVideo(video)">Modifier</button>
-                <button (click)="deleteVideo(video)">Supprimer</button>
+                    <!-- Titre de la vidéo -->
+                    <div class="video-title">
+                        <h3>{{ video.video_name }}</h3>
+                    </div>
+
+                    <!-- Boutons d'actions -->
+                    <div class="video-actions">
+                        <button (click)="editVideo(video); $event.stopPropagation()">Modifier</button>
+                        <button (click)="deleteVideo(video); $event.stopPropagation()">Supprimer</button>
+                    </div>
+
+                    <!-- Formulaire de modification -->
+                    <div *ngIf="video.editing" class="edit-form">
+                        <input [(ngModel)]="video.video_name" placeholder="Nouveau nom de la vidéo" />
+                        <button (click)="saveVideo(video)">Enregistrer</button>
+                        <button (click)="cancelEdit(video)">Annuler</button>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <!-- Bouton Suivant -->
+        <button (click)="scrollRight()">▶</button>
     </div>
 </div>

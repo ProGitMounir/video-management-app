@@ -1,0 +1,86 @@
+/* Conteneur principal */
+.home-container {
+    max-width: 800px; /* Largeur maximale pour une meilleure lisibilité */
+    margin: 0 auto; /* Centrer le contenu */
+    padding: 2rem; /* Espacement interne */
+    font-family: Arial, sans-serif; /* Police de caractères */
+    line-height: 1.6; /* Espacement entre les lignes */
+    color: #333; /* Couleur du texte */
+}
+
+/* Titre principal */
+.home-container h1 {
+    font-size: 2.5rem; /* Taille du titre augmentée */
+    color: #007bff; /* Couleur bleue pour le titre */
+    margin-bottom: 1.5rem; /* Espacement en dessous du titre */
+    text-align: center; /* Centrer le titre */
+    font-weight: bold; /* Texte en gras */
+}
+
+/* Sous-titres */
+.home-container h2 {
+    font-size: 1.8rem; /* Taille des sous-titres */
+    color: #007bff; /* Couleur bleue pour les sous-titres */
+    margin-top: 2rem; /* Espacement au-dessus du sous-titre */
+    margin-bottom: 1rem; /* Espacement en dessous du sous-titre */
+    font-weight: 600; /* Texte semi-gras */
+}
+
+/* Paragraphes */
+.home-container p {
+    font-size: 1.1rem;
+    text-align: justify; /* Justifier le texte */
+    margin-bottom: 1.5rem; /* Espacement en dessous du paragraphe */
+    color: #555; /* Couleur de texte légèrement plus douce */
+}
+
+/* Section de mise en avant */
+.home-container .highlight {
+    background-color: #f9f9f9; /* Fond gris clair */
+    padding: 1.5rem; /* Espacement interne augmenté */
+    border-left: 4px solid #007bff; /* Bordure gauche bleue */
+    margin-bottom: 2rem; /* Espacement en dessous de la section */
+    border-radius: 4px; /* Coins arrondis */
+}
+
+/* Liste des fonctionnalités */
+.home-container .highlight ul {
+    list-style-type: disc; /* Puces rondes */
+    padding-left: 2rem; /* Espacement à gauche pour les puces */
+    margin-top: 1rem; /* Espacement au-dessus de la liste */
+}
+
+.home-container .highlight ul li {
+    margin-bottom: 0.75rem; /* Espacement entre les éléments de la liste */
+    font-size: 1rem; /* Taille de police pour les éléments de la liste */
+    color: #444; /* Couleur de texte légèrement plus foncée */
+}
+
+/* Boutons (si vous en ajoutez plus tard) */
+.home-container button {
+    background-color: #007bff; /* Couleur de fond bleue */
+    color: white; /* Texte blanc */
+    border: none;
+    padding: 0.75rem 1.5rem; /* Taille du bouton augmentée */
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease;
+    display: block; /* Bouton en bloc pour centrage */
+    margin: 1.5rem auto; /* Centrer le bouton */
+}
+
+.home-container button:hover {
+    background-color: #0056b3; /* Couleur de fond plus foncée au survol */
+}
+
+/* Liens (si vous en ajoutez plus tard) */
+.home-container a {
+    color: #007bff; /* Couleur bleue pour les liens */
+    text-decoration: none; /* Supprimer le soulignement */
+    transition: color 0.2s ease;
+}
+
+.home-container a:hover {
+    color: #0056b3; /* Couleur plus foncée au survol */
+}

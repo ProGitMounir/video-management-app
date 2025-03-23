@@ -1,28 +1,17 @@
- <!-- En-tête intégré directement dans le composant racine -->
-    <header class="header">
-        <h1>Gestion de Vidéos</h1>
+<!-- En-tête intégré directement dans le composant racine -->
+<header class="header">
+    <div class="header-content">
+        <a routerLink="accueil">
+            <img src="logo.png" alt="Logo Gestion de Vidéos" class="logo">
+        </a>
         <nav class="nav">
-            <a routerLink="accueil">Accueil</a>
-            <a routerLink="upload">Télécharger une vidéo</a>
-            <a routerLink="video-list">Liste des videos</a>
-            <a routerLink="about">À propos</a>
+            <a routerLink="accueil" class="nav-link">Accueil</a>
+            <a routerLink="upload" class="nav-link">Télécharger une vidéo</a>
+            <a routerLink="list-videos" class="nav-link">Liste des vidéos</a>
         </nav>
-    </header>
+    </div>
+</header>
 
-    <!-- Contenu principal -->
-    <main>
-        <router-outlet></router-outlet>
-    </main>
+<!-- Contenu principal -->
+<router-outlet></router-outlet>
 
-    <!-- Pied de page -->
-    <footer class="footer">
-        <div class="footer-content">
-          <p>&copy; 2025 - Créé par MounirIA</p>
-            <nav class="footer-nav">
-                <a routerLink="accueil">Accueil</a>
-                <a routerLink="upload">Télécharger une vidéo</a>
-                <a routerLink="video-list">Liste des videos</a>
-                <a routerLink="about">À propos</a>
-            </nav>
-        </div>
-    </footer>

@@ -1,0 +1,233 @@
+/* Conteneur principal */
+.video-list-container {
+    padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 4rem; /* Grand espace au-dessus du composant */
+}
+
+/* Titre h2 */
+.video-list-container h2 {
+    font-size: 2rem; /* Taille de police augmentée */
+    color: #007bff; /* Couleur bleue pour le titre */
+    text-align: center; /* Centrer le titre */
+    margin-bottom: 2rem; /* Espacement en dessous du titre */
+    padding-bottom: 0.5rem; /* Espacement sous le texte */
+    border-bottom: 2px solid #007bff; /* Bordure en bas pour le style */
+    display: inline-block; /* Pour que la bordure ne s'étende pas sur toute la largeur */
+    font-weight: 600; /* Texte en gras */
+}
+
+/* Indicateur de chargement */
+.loading {
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+}
+
+/* Message d'erreur */
+.error {
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: red;
+}
+
+/* Conteneur des boutons de navigation et du défilement */
+.video-scroll-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Boutons de navigation */
+.video-scroll-controls button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0; /* Empêche les boutons de rétrécir */
+}
+
+.video-scroll-controls button:hover {
+    background-color: #0056b3;
+}
+
+/* Conteneur défilable pour les vidéos */
+.video-scroll-container {
+    display: flex;
+    overflow-x: auto; /* Permet le défilement horizontal */
+    gap: 1rem; /* Espace entre les vidéos */
+    padding-bottom: 1rem; /* Espace en bas pour éviter que la barre de défilement ne chevauche le contenu */
+    scrollbar-width: thin; /* Pour les navigateurs modernes */
+    scrollbar-color: #888 transparent; /* Couleur de la barre de défilement */
+    flex-grow: 1; /* Permet au conteneur de prendre tout l'espace disponible */
+}
+
+/* Style de la barre de défilement pour WebKit (Chrome, Safari) */
+.video-scroll-container::-webkit-scrollbar {
+    height: 8px; /* Hauteur de la barre de défilement */
+}
+
+.video-scroll-container::-webkit-scrollbar-thumb {
+    background-color: #888; /* Couleur de la poignée de défilement */
+    border-radius: 4px; /* Bord arrondi */
+}
+
+.video-scroll-container::-webkit-scrollbar-track {
+    background-color: transparent; /* Couleur de la piste de défilement */
+}
+
+/* Conteneur pour chaque vidéo */
+.video-item {
+    flex: 0 0 auto; /* Empêche les vidéos de rétrécir ou de s'étirer */
+    width: 225px; /* Largeur fixe pour chaque vidéo */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+/* Effet de survol sur chaque vidéo */
+.video-item:hover {
+    transform: scale(1.05);
+}
+
+/* Conteneur interne pour la vidéo */
+.video-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Miniature de la vidéo */
+.video-thumbnail {
+    width: 100%;
+    height: 400px; /* Hauteur augmentée pour un format 9:16 */
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black; /* Fond noir pour mieux voir la vidéo */
+}
+
+.video-thumbnail video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ajuste la vidéo pour qu'elle soit entièrement visible */
+}
+
+.video-thumbnail:active {
+    transform: scale(0.95); /* Effet de zoom lors du clic */
+    transition: transform 0.1s ease;
+}
+
+/* Titre de la vidéo */
+.video-title {
+    padding: 0.5rem;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.video-title h3 {
+    font-size: 1rem;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Ajoute des points de suspension si le titre est trop long */
+}
+
+/* Boutons d'actions */
+.video-actions {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5rem;
+    background-color: #f9f9f9;
+    opacity: 0; /* Masqué par défaut */
+    transition: opacity 0.3s ease;
+}
+
+/* Afficher les boutons au survol */
+.video-item:hover .video-actions {
+    opacity: 1;
+}
+
+/* Style des boutons */
+.video-actions button {
+    padding: 0.3rem 0.6rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background-color 0.2s ease;
+}
+
+.video-actions button:hover {
+    background-color: #0056b3;
+}
+
+.play-pause-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+/* Formulaire de modification */
+.edit-form {
+    padding: 0.5rem;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.edit-form input {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.edit-form input:focus {
+    border-color: #007bff;
+}
+
+.edit-form button {
+    padding: 0.3rem 0.6rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: background-color 0.2s ease;
+}
+
+.edit-form button:hover {
+    background-color: #0056b3;
+}
+
+.edit-form button:last-child {
+    background-color: #6c757d; /* Couleur grise pour le bouton Annuler */
+}
+
+.edit-form button:last-child:hover {
+    background-color: #5a6268; /* Couleur grise plus foncée au survol */
+}

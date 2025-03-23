@@ -8,7 +8,7 @@ Une application web pour gérer des vidéos avec des fonctionnalités complètes
 - **Affichage des vidéos** : Consultez la liste des vidéos avec leurs détails (nom, durée, rapport d'aspect).
 - **Modification des vidéos** : Renommez les vidéos existantes.
 - **Suppression des vidéos** : Supprimez les vidéos qui ne sont plus nécessaires.
-- **Réorganisation des vidéos** : Changez l'ordre des vidéos selon vos préférences.
+- **Réorganisation des vidéos** : Changez l'ordre des vidéos selon vos préférences. **(Pas encore disponible)**
 
 ## Technologies Utilisées
 
